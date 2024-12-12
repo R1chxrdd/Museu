@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>Artistas</title>
+    <style>
+        body {
+            background-image: url('https://as2.ftcdn.net/v2/jpg/00/92/74/85/1000_F_92748596_bYGCjxye03f4ZeHFWRQjfWdvXQlYJT3k.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200vh;
+            margin: 0;
+            font-family: 'DM Serif Display', serif;
+            text-align: center;
+        }
+        .artistas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #a27a47c2;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 500px;
+        }
+        .artistas img {
+            max-width: 120%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .descricao {
+            font-size: 16px;
+            margin-top: 10px;
+            color: rgb(0, 0, 0);
+        }
+        .obras img {
+            max-width: 100px;
+            margin: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="artistas">
+        <h2>{{ artista.getNome() }}</h2>
+        <img src="{{ url_for('static', filename=artista.getFoto()) }}" alt="Foto de {{ artista.getNome() }}">
+        <div class="descricao">Biografia:<br> {{ artista.getBiografia() }}</div>
+
+        <h3>Obras:</h3>
+        <div class="obras">
+            {% for obra in obras %}
+                <div>
+                    <h4>{{ obra.getNome() }}</h4>
+                    <a href="{{ url_for('detalhe_obra', obra_id=obra.getId()) }}">
+                    <img src="{{ url_for('static', filename=obra.getImagem()) }}" alt="Imagem de {{ obra.getNome() }}"></a>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <a href="{{ url_for('home') }}">Voltar</a>
+    </div>
+</body>
+</html>

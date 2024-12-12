@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ obra.getNome() }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>{{ obra.getNome() }}</title>
+    <style>
+         body {
+            background-image: url('https://images.unsplash.com/photo-1488952619802-0a3f502bab33?fm=jpg&q=60');
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'DM Serif Display', serif;
+            color: #333;
+        }
+
+        .obra {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #65291ef3; 
+            padding: 35px;
+            max-width: 400px;
+            text-align: center;
+            color: #fff;
+        }
+
+        h2 {
+            margin: 5px 0 10px; 
+            font-size: 28px;
+        }
+
+        h3{
+            position: relative;
+            top:15px;
+        }
+
+        img {
+            max-width: 180px;
+            height: auto;
+            border-radius: 8px;
+            margin: 1px 0; 
+        }
+
+        p {
+            margin: 4px 0; 
+            font-size: 16px;
+        }
+
+        a {
+            color: #f63b3b;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="obra">
+        <h2>{{ obra.getNome() }}</h2>
+        <img src="{{ url_for('static', filename=obra.getImagem()) }}" alt=" img {{ obra.getNome() }}">
+        <p>Categoria: {{ obra.getCategoria() }}</p>
+        <p>Artista: <a href="{{ url_for('detalhe_artistas', artistas_id=obra.getArtistaId()) }}">{{obra.getArtista()}}</a></p>
+        <p>Descrição:<br> {{ obra.getDescricao() }}</p>
+        <p>Data de criação: {{ obra.getDataCriacao() }}</p>
+        <p>Disponibilidade: {{  obra.getExibicao() }}</p>
+        <h3>Lances</h3>
+        <p>{{  obra.getComentarioLance2() }}</p>
+        <textarea id="mensagem" name="mensagem" rows="1" cols="40" placeholder="Digite seu lance"></textarea><br><br>
+    </form>
+        <a href="{{ url_for('home') }}">Voltar a listagem de obras</a>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=NomeDaFonte:wght@400;700&display=swap" rel="stylesheet">
+ </head>
+    <title>Detalhes</title>
+    <style>
+        body{
+            background-image: url('https://coolbackgrounds.io/images/backgrounds/index/gulf-dec0ccde.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:300vh;
+            margin: 0;
+            font-family: 'DM Serif Display', serif;
+            text-align: center;
+            color: #ffffff;
+            background-color: rgba(0, 255, 255, 0.27);
+            
+        }
+        .contanier{
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(39, 64, 62, 0.979);
+            align-items: center;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 500px;
+            position: relative;
+            top:-17px;
+        }
+
+        .contanier img{
+            max-width: 90px;
+            height: auto;
+            border-radius: 5px;
+        }
+        
+        a{
+          color:white;
+        }
+    </style>
+</head>
+<body>
+    <div class="contanier">
+    <h1>Detalhes Lance/Comentário</h1>
+    {% for obra in [obra1, obra2, obra3, obra4, obra5, obra6] %}
+    <p>{{  obra.getNome()}}</p>
+    <a href="{{ url_for('detalhe_obra', obra_id=obra.getId()) }}">
+    <img src="{{ url_for('static', filename=obra.getImagem()) }}" alt="Imagem da obra {{ obra.getNome() }}"></a>
+    <p>{{  obra.getComentarioLance2() }}</p>
+    <p>{{ obra.getComentarioLance() }}</p>
+    <div class="lance">
+    <p>{{ obra.getEncerramento() }}</p>
+    <textarea id="mensagem" name="mensagem" rows="1" cols="40" placeholder="Digite seu Lance ou Comentário:"></textarea></div>
+    {% endfor %}
+    <a href="{{url_for('lista_lance')}}" >Voltar</a>
+</div>
+
+
+
+
+
+
+</body>
+</html>

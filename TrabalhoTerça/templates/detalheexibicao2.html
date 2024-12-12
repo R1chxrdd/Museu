@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Exibição</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+
+       h1{
+        color: #1100ff;
+       }
+
+        h2{
+            color: #1100ff;
+            font-size: 30px;
+        }
+        body {
+    background-image: url('https://jornalvozativa.com/wp-content/uploads/2023/08/jornal-voz-ativa-ouro-preto-mg-minas-gerais-op-materia-ibram-lancara-plataforma-online-com-acervos-de-museus-brasileiros-16082023082158.jpg');
+    background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200vh;
+            margin: 0;
+            font-family: 'DM Serif Display', serif;
+            text-align: center;
+}
+        .artistas {
+            position: relative;
+            left: 0%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #56c5c1f5;
+            padding: 20px;
+            max-width: 500px;
+        }
+        .artistas img {
+            max-width: 44%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .obra {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+
+        .obras img {
+            max-width: 100px;
+            margin: 1px;
+        }
+        a {
+            color: #ffffff;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="artistas">
+        <h1>{{ exibicao.getTitulo() }}</a></h1>
+        <img src="{{ url_for('static', filename=exibicao.getFoto()) }}" alt="{{ exibicao.getTitulo() }}">
+        <p><strong>Data de Início:</strong> {{ exibicao.getData_inicio() }}</p>
+        <p><strong>Data de Término:</strong> {{ exibicao.getTermino() }}</p>
+        <p><strong>Local: Rua Arminda - 644</strong></p>
+        <p><strong>Curador Responável: Ana Santos</strong></p>
+    
+
+    <div class="obras">
+        <h2>Obras Exibidas:</h2>
+        {% for obra in [obra4, obra5, obra6] %}
+            <div class="obra">
+                <h3>{{ obra.getNome() }}</h3>
+                <a href="{{ url_for('detalhe_obra', obra_id=obra.getId()) }}">
+                <img src="{{ url_for('static', filename=obra.getImagem()) }}" alt="{{ obra.getNome() }}"></a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <a href="{{ url_for('lista_exibicoes') }}">Voltar para a lista de exibições</a>
+</div>
+</body>
+</html>

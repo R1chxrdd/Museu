@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibições</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://museuboulieu.org.br/wp-content/uploads/2022/04/Museu-Boulieu_Foto-Nelson-Kon_Acervo-Instituto-Pedra-03-1.jpg');
+            font-family: 'DM Serif Display', serif;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 21%;
+            margin: auto;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .exibicao {
+            position: relative;
+            top: -10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #781e16ec;
+            padding: 1px;
+            max-width: 500px;
+            text-align: center;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .exibicao img {
+            max-width: 60%;
+            border-radius: 5px;
+        }
+
+        .exibicao h2 {
+            font-size: 1.5em;
+        }
+
+        .exibicao p {
+            font-size: 13px;
+            margin: 5px 0;
+        }
+
+    
+        .back-link {
+            position: relative;
+            top: -20px;
+            text-align: center;
+            margin-top: 20px;
+            display: block;
+            color: #ff2828;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% for exibicao in exibicoes %}
+        <div class="exibicao">
+            <h2>{{ exibicao.getTitulo() }}</h2>
+            <a href="{{ url_for('detalhe_exibicao', exibicao_id=exibicao.getId()) }}" class="details-link">
+            <img src="{{ url_for('static', filename=exibicao.getFoto()) }}" alt="{{ exibicao.getTitulo() }}"></a>
+            <p><strong>Data de Início:</strong> {{ exibicao.getData_inicio() }}</p>
+            <p><strong>Data de Término:</strong> {{ exibicao.getTermino() }}</p>
+        </div>
+        {% endfor %}
+        <a href="{{ url_for('home') }}" class="back-link">Voltar para a lista de obras</a>
+    </div>
+</body>
+</html>

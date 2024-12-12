@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=NomeDaFonte:wght@400;700&display=swap" rel="stylesheet">
+ </head>
+      
+    <title>Lista de Obras</title>
+    <style>
+
+    h1{
+        position: relative;
+        top: -14px;
+        font-size:50px;
+        color:#ffd900;
+        font-family: 'DM Serif Display', serif;
+    }
+    
+    h2{
+        position: relative;
+        top: -50px;
+        color: #ffffff;
+        font-size: 35px;
+        font-family: 'DM Serif Display', serif;
+    }
+
+     body {
+        background-color: #241a14;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image: url('https://museusaoroque.scml.pt/wp-content/uploads/2023/04/museu-sala-brasao.jpg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center top;
+        position: relative;
+        top: -33px;
+}
+
+
+        .obra-container {
+            position: relative;
+            top: -50px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            max-width: 700px;
+            justify-content: center;
+        }
+        .obra {
+            position: relative;
+            top: -50%;
+            background-color: #fff3b1f3;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 180px;
+        }
+        .obra img {
+            max-width: 88%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        
+        .artista-info {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #000000;
+        }
+        .artistas-container {
+            position: relative;
+            top: -80px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1000px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .artista {
+            background-color: #d3d3d3;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 200px;
+        }
+        .artista img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        a{
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .exibicao a{
+            color:#ffffff;
+            font-size: 30px;
+            font-family: 'DM Serif Display', serif;
+        }
+    </style>
+    <h1>OBRAS</h1>
+    <div class="obra-container">
+        {% for obra in obras %}
+            <div class="obra">
+                <h3><a href="{{ url_for('detalhe_obra', obra_id=obra.getId()) }}">{{ obra.getNome() }}</a></h3>
+                <img src="{{ url_for('static', filename=obra.getImagem()) }}" alt="Imagem de {{ obra.getNome() }}">
+                <p>Categoria: {{ obra.getCategoria() }}</p>
+                <div class="artista-info">Artista: {{ obra.getArtista() }}</div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <h2>Artistas</h2>
+    <div class="artistas-container">
+        {% for artista in artistas %}
+            <div class="artista">
+                <h3><a href="{{ url_for('detalhe_artistas', artistas_id=artista.getId()) }}">{{ artista.getNome() }}</a></h3>
+                <img src="{{ url_for('static', filename=artista.getFoto()) }}" alt="Foto de {{ artista.getNome() }}">
+                <p>Obras: {{ artista.getObras() }}</p>
+                <div class="descricao">Descrição: {{ artista.getDescricao() }}</div>
+        
+            </div>
+        {% endfor %}
+    </div>
+    <div class="exibicao">
+    <a href="{{ url_for('lista_exibicoes') }}"> Exibições</a><br>
+    <a href="{{ url_for('lista_lance') }}">Leilões</a></div>
+
+</div>
+</body>
+</html>

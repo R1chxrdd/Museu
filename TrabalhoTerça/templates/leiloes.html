@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>Leilões</title>
+    <style>
+        body {
+            background-image: url('https://images.squarespace-cdn.com/content/v1/58acad8f3e00be4c7648467e/eacb135e-6991-4df0-9732-ec8daa7922d4/12G_7182_83.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200vh;
+            margin: 0;
+            font-family: 'DM Serif Display', serif;
+            text-align: center;
+            font-size: 18px;
+        }
+        .artistas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #308a7c; 
+            padding: 20px;
+            max-width: 500px;
+        }
+        .obras img {
+            max-width: 254px;
+            margin: 1px;
+            border-radius: 8px; 
+        }
+        .obras {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+        h1 {
+            font-size: 24px;
+            color: #ffffff;
+        }
+        a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        a:hover {
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="artistas">
+        <div class="obras">  
+            <h1>Leilões</h1>
+            {% for obra in [obra4, obra5, obra6] %}
+            <h4>{{ obra.getNome()}}</h4>
+                <a href="{{ url_for('detalhe_obra', obra_id=obra.getId()) }}">
+                    <img src="{{ url_for('static', filename=obra.getImagem()) }}" alt="{{ obra.getNome() }}">
+                </a>
+                <p>{{ obra.getComentarioLance2()}}</p>
+                <p>{{ leilao4.getEncerramento()}}</p>
+            {% endfor %}
+        </div>
+        <a href="{{url_for('lista_leiloes')}}">Mais detalhes</a>
+        <a href="{{ url_for('home') }}">Voltar ao início</a>
+    </div>
+</body>
+</html>
