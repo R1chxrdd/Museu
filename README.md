@@ -22,7 +22,7 @@ O sistema foi desenvolvido com o objetivo de apresentar páginas informativas e 
 - HTML5
 - CSS3
 - Jinja2
-- Bootstrap (se utilizado)
+
 
 ## Conceitos Aplicados
 
